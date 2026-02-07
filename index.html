@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Valentine for NM 💋</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #d81b60; /* dark pink */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: #ffd6e8; /* baby pink */
+      padding: 40px 50px 60px;
+      border-radius: 20px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    .teddy {
+      position: absolute;
+      top: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 80px;
+    }
+
+    h1 {
+      color: #b0003a;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    #yesBtn {
+      background: #ff4081;
+      color: white;
+    }
+
+    #noBtn {
+      background: #fff;
+      color: #d81b60;
+      position: relative;
+    }
+
+    .no-text {
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: #880e4f;
+      white-space: nowrap;
+    }
+
+    .hearts span {
+      position: fixed;
+      bottom: -20px;
+      font-size: 16px;
+      animation: floatUp 5s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+
+    .final {
+      font-size: 26px;
+      color: #b0003a;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <div class="teddy">🧸</div>
+    <h1>Will you be my Valentine NM?? 😭💋</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💋</button>
+      <button id="noBtn">
+        No 😤
+        <div class="no-text" id="noText"></div>
+      </button>
+    </div>
+  </div>
+
+  <div class="hearts" id="hearts"></div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const noText = document.getElementById("noText");
+    const card = document.getElementById("card");
+
+    const messages = [
+      "Are you sure 🙄",
+      "Don't dare you 🔪",
+      "I hate youuu 😡",
+      "Whyy nm baby 🥺"
+    ];
+    let msgIndex = 0;
+
+    noBtn.addEventListener("mouseenter", () => {
+      msgIndex = (msgIndex + 1) % messages.length;
+      noText.textContent = messages[msgIndex];
+
+      const x = Math.random() * 120 - 60;
+      const y = Math.random() * 80 - 40;
+
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    document.getElementById("yesBtn").addEventListener("click", () => {
+      card.innerHTML = `
+        <div class="final">
+          BESSSTTTT DECISION 😭<br>
+          I LOVE YOU SOOO MUCHHH NM 🫶🏻💋
+        </div>
+      `;
+      createHearts();
+    });
+
+    function createHearts() {
+      const heartContainer = document.getElementById("hearts");
+      for (let i = 0; i < 40; i++) {
+        const heart = document.createElement("span");
+        heart.textContent = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+        heartContainer.appendChild(heart);
+      }
+    }
+  </script>
+
+</body>
+</html>
